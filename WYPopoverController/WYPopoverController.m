@@ -1961,8 +1961,12 @@ static WYPopoverTheme *defaultTheme_ = nil;
                 [strongSelf->viewController addObserver:self forKeyPath:NSStringFromSelector(@selector(contentSizeForViewInPopover)) options:0 context:nil];
             }
             
+            CGSize contentSize = [strongSelf topViewControllerContentSize];
+            [strongSelf setPopoverContentSize:contentSize];
+            
             strongSelf->backgroundView.appearing = NO;
         }
+        
         
         if (completion)
         {
@@ -1999,6 +2003,9 @@ static WYPopoverTheme *defaultTheme_ = nil;
         }
         
         [viewController viewWillAppear:YES];
+        
+        CGSize contentSize = [strongSelf topViewControllerContentSize];
+        [strongSelf setPopoverContentSize:contentSize];
         
         CGAffineTransform endTransform = backgroundView.transform;
         
