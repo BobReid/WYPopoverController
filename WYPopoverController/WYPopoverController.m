@@ -2004,8 +2004,8 @@ static WYPopoverTheme *defaultTheme_ = nil;
         
         [viewController viewWillAppear:YES];
         
-        CGSize contentSize = [strongSelf topViewControllerContentSize];
-        [strongSelf setPopoverContentSize:contentSize];
+        CGSize contentSize = [self topViewControllerContentSize];
+        [self setPopoverContentSize:contentSize];
         
         CGAffineTransform endTransform = backgroundView.transform;
         
