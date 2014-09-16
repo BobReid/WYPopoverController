@@ -1649,7 +1649,7 @@ static WYPopoverTheme *defaultTheme_ = nil;
     if (self)
     {
         // ignore orientation in iOS8
-        ignoreOrientation = [[NSProcessInfo processInfo] respondsToSelector:@selector(operatingSystemVersion)];
+        ignoreOrientation = WY_IS_IOS_GREATER_THAN_OR_EQUAL_TO(@"8.0");
 
         popoverLayoutMargins = UIEdgeInsetsMake(10, 10, 10, 10);
         keyboardRect = CGRectZero;
@@ -2991,7 +2991,7 @@ static NSString* WYStringFromOrientation(NSInteger orientation) {
 
 static float WYStatusBarHeight() {
 
-    if ([[NSProcessInfo processInfo] respondsToSelector:@selector(operatingSystemVersion)]) {
+    if (WY_IS_IOS_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
         CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
         return statusBarFrame.size.height;
     } else {
@@ -3016,7 +3016,7 @@ static float WYInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation ori
 {
     float angle;
     // no transformation needed in iOS 8
-    if ([[NSProcessInfo processInfo] respondsToSelector:@selector(operatingSystemVersion)]) {
+    if (WY_IS_IOS_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
         angle = 0.0;
     } else {
         switch (orientation)
@@ -3047,7 +3047,7 @@ static CGRect WYRectInWindowBounds(CGRect rect, UIInterfaceOrientation orientati
     float windowHeight = keyWindow.bounds.size.height;
     
     CGRect result = rect;
-    if (![[NSProcessInfo processInfo] respondsToSelector:@selector(operatingSystemVersion)]) {
+    if (!WY_IS_IOS_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
         
         if (orientation == UIInterfaceOrientationLandscapeRight) {
             
@@ -3083,7 +3083,7 @@ static CGPoint WYPointRelativeToOrientation(CGPoint origin, CGSize size, UIInter
     float windowHeight = keyWindow.bounds.size.height;
     
     CGPoint result = origin;
-    if (![[NSProcessInfo processInfo] respondsToSelector:@selector(operatingSystemVersion)]) {
+    if (!WY_IS_IOS_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
         
         if (orientation == UIInterfaceOrientationLandscapeRight) {
             result.x = windowWidth - origin.y - size.width;
